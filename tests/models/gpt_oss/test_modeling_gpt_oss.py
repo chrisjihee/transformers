@@ -124,6 +124,10 @@ class GptOssModelTest(CausalLMModelTest, unittest.TestCase):
     def test_flex_attention_with_grads(self):
         pass
 
+    @unittest.skipIf(torch_device == "cpu", "GptOss does not support flex officially")
+    def test_generate_compile_model_forward_fullgraph(self):
+        return super().test_generate_compile_model_forward_fullgraph()
+
 
 RESULTS_PATH = Path(__file__).parent.parent.parent / "fixtures/gpt_oss/integration_tests.json"
 
