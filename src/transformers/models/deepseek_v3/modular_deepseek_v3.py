@@ -3,13 +3,12 @@ from typing import Callable, Optional
 
 import torch
 import torch.nn.functional as F
-import torch.utils.checkpoint
 from torch import nn
 
 from ...activations import ACT2FN
 from ...cache_utils import Cache
 from ...modeling_flash_attention_utils import FlashAttentionKwargs
-from ...modeling_layers import GenericForSequenceClassification
+from ...modeling_layers import GenericForSequenceClassification, GenericForTokenClassification
 from ...modeling_utils import ALL_ATTENTION_FUNCTIONS, PreTrainedModel
 from ...processing_utils import Unpack
 from ...utils import logging
@@ -361,9 +360,14 @@ class DeepseekV3ForSequenceClassification(GenericForSequenceClassification, Deep
     pass
 
 
+class DeepseekV3ForTokenClassification(GenericForTokenClassification, DeepseekV3PreTrainedModel):
+    pass
+
+
 __all__ = [
     "DeepseekV3PreTrainedModel",
     "DeepseekV3Model",
     "DeepseekV3ForCausalLM",
     "DeepseekV3ForSequenceClassification",
+    "DeepseekV3ForTokenClassification",
 ]
